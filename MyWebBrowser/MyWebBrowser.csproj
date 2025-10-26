@@ -1,0 +1,58 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icon\back-button.png" />
+    <None Remove="Icon\bookmark.png" />
+    <None Remove="Icon\close.png" />
+    <None Remove="Icon\download.png" />
+    <None Remove="Icon\fast-forward.png" />
+    <None Remove="Icon\file.png" />
+    <None Remove="Icon\fullscreen.png" />
+    <None Remove="Icon\history.png" />
+    <None Remove="Icon\home.png" />
+    <None Remove="Icon\Incognito.png" />
+    <None Remove="Icon\loupe.png" />
+    <None Remove="Icon\minus.png" />
+    <None Remove="Icon\more.png" />
+    <None Remove="Icon\refresh.png" />
+    <None Remove="Icon\Webbrowser.png" />
+    <None Remove="SummaryAI\MainCharacter.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetProjects.WpfToolkit.Input" Version="6.1.94" />
+    <PackageReference Include="Dragablz" Version="0.0.3.234" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.12.4" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icon\back-button.png" />
+    <Resource Include="Icon\bookmark.png" />
+    <Resource Include="Icon\close.png" />
+    <Resource Include="Icon\download.png" />
+    <Resource Include="Icon\fast-forward.png" />
+    <Resource Include="Icon\file.png" />
+    <Resource Include="Icon\fullscreen.png" />
+    <Resource Include="Icon\history.png" />
+    <Resource Include="Icon\home.png" />
+    <Resource Include="Icon\Incognito.png" />
+    <Resource Include="Icon\loupe.png" />
+    <Resource Include="Icon\minus.png" />
+    <Resource Include="Icon\more.png" />
+    <Resource Include="Icon\refresh.png" />
+    <Resource Include="Icon\Webbrowser.png" />
+    <Resource Include="SummaryAI\MainCharacter.png" />
+  </ItemGroup>
+
+</Project>

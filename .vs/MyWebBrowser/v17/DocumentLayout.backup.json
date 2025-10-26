@@ -1,0 +1,245 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\downloaded\\downloadedpopup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\downloaded\\downloadedpopup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\history\\historypopup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\history\\historypopup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\history\\historyitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\history\\historyitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\history\\historymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\history\\historymanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\bookmark\\bookmarkpopup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\bookmark\\bookmarkpopup.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\webwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\webwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\mywebbrowser.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\mywebbrowser.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\summaryai\\summaryai.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\summaryai\\summaryai.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\webwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\webwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\tab\\incognitoiconconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\tab\\incognitoiconconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|c:\\desktopktop\\beta ver\\ver5\\mywebbrowser\\mywebbrowser\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F6065216-F111-42F3-B593-6C5FABD624AB}|MyWebBrowser\\MyWebBrowser.csproj|solutionrelative:mywebbrowser\\assemblyinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HistoryPopup.xaml",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\History\\HistoryPopup.xaml",
+              "RelativeDocumentMoniker": "MyWebBrowser\\History\\HistoryPopup.xaml",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\History\\HistoryPopup.xaml",
+              "RelativeToolTip": "MyWebBrowser\\History\\HistoryPopup.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-26T17:50:20.012Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HistoryItem.cs",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\History\\HistoryItem.cs",
+              "RelativeDocumentMoniker": "MyWebBrowser\\History\\HistoryItem.cs",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\History\\HistoryItem.cs",
+              "RelativeToolTip": "MyWebBrowser\\History\\HistoryItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T17:50:19.381Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "HistoryManager.cs",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\History\\HistoryManager.cs",
+              "RelativeDocumentMoniker": "MyWebBrowser\\History\\HistoryManager.cs",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\History\\HistoryManager.cs",
+              "RelativeToolTip": "MyWebBrowser\\History\\HistoryManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T17:50:18.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DownloadedPopup.xaml",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\Downloaded\\DownloadedPopup.xaml",
+              "RelativeDocumentMoniker": "MyWebBrowser\\Downloaded\\DownloadedPopup.xaml",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\Downloaded\\DownloadedPopup.xaml",
+              "RelativeToolTip": "MyWebBrowser\\Downloaded\\DownloadedPopup.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-26T17:50:07.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BookmarkPopup.xaml",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\Bookmark\\BookmarkPopup.xaml",
+              "RelativeDocumentMoniker": "MyWebBrowser\\Bookmark\\BookmarkPopup.xaml",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\Bookmark\\BookmarkPopup.xaml",
+              "RelativeToolTip": "MyWebBrowser\\Bookmark\\BookmarkPopup.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-26T17:49:59.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IncognitoIconConverter.cs",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\Tab\\IncognitoIconConverter.cs",
+              "RelativeDocumentMoniker": "MyWebBrowser\\Tab\\IncognitoIconConverter.cs",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\Tab\\IncognitoIconConverter.cs",
+              "RelativeToolTip": "MyWebBrowser\\Tab\\IncognitoIconConverter.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T17:19:27.765Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SummaryAI.xaml.cs",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\SummaryAI\\SummaryAI.xaml.cs",
+              "RelativeDocumentMoniker": "MyWebBrowser\\SummaryAI\\SummaryAI.xaml.cs",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\SummaryAI\\SummaryAI.xaml.cs",
+              "RelativeToolTip": "MyWebBrowser\\SummaryAI\\SummaryAI.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T17:19:14.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MyWebBrowser.csproj",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\MyWebBrowser.csproj",
+              "RelativeDocumentMoniker": "MyWebBrowser\\MyWebBrowser.csproj",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\MyWebBrowser.csproj",
+              "RelativeToolTip": "MyWebBrowser\\MyWebBrowser.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-26T17:07:28.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AssemblyInfo.cs",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\AssemblyInfo.cs",
+              "RelativeDocumentMoniker": "MyWebBrowser\\AssemblyInfo.cs",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\AssemblyInfo.cs",
+              "RelativeToolTip": "MyWebBrowser\\AssemblyInfo.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T17:06:22.315Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\App.xaml.cs",
+              "RelativeDocumentMoniker": "MyWebBrowser\\App.xaml.cs",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\App.xaml.cs",
+              "RelativeToolTip": "MyWebBrowser\\App.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T17:06:12.658Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\App.xaml",
+              "RelativeDocumentMoniker": "MyWebBrowser\\App.xaml",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\App.xaml",
+              "RelativeToolTip": "MyWebBrowser\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-26T17:05:17.613Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "WebWindow.xaml",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\WebWindow.xaml",
+              "RelativeDocumentMoniker": "MyWebBrowser\\WebWindow.xaml",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\WebWindow.xaml",
+              "RelativeToolTip": "MyWebBrowser\\WebWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-26T16:22:52.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "WebWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\WebWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MyWebBrowser\\WebWindow.xaml.cs",
+              "ToolTip": "C:\\Desktopktop\\Beta Ver\\ver5\\MyWebBrowser\\MyWebBrowser\\WebWindow.xaml.cs",
+              "RelativeToolTip": "MyWebBrowser\\WebWindow.xaml.cs",
+              "ViewState": "AgIAALkAAAAAAAAAAAAAwPEAAABeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-26T16:22:47.185Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

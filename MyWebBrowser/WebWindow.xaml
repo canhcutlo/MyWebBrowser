@@ -1,0 +1,301 @@
+﻿<Window x:Class="MyWebBrowser.WebWindow"
+        xmlns:local="clr-namespace:MyWebBrowser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:dockablz="clr-namespace:Dragablz.Dockablz;assembly=Dragablz"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:controls="clr-namespace:System.Windows.Controls;assembly=DotNetProjects.Input.Toolkit"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        WindowStyle="None" ResizeMode="CanResize"
+        Background="#F1F3F9"
+        BorderBrush="#F1F3F9"
+        Title="MainWindow" Height="600" Width="1000"
+        Loaded="Window_Loaded"
+        MouseDown="Window_MouseDown">
+
+    <Window.InputBindings>
+        <KeyBinding Key="H" Modifiers="Ctrl" Command="{x:Static local:WebWindow.ShowHistoryCommand}"/>
+        <KeyBinding Key="B" Modifiers="Ctrl" Command="{x:Static local:WebWindow.ShowBookmarkCommand}"/>
+        <KeyBinding Key="D" Modifiers="Ctrl" Command="{x:Static local:WebWindow.ShowDownloadHistoryCommand}"/>
+    </Window.InputBindings>
+
+    <Window.Resources>
+        <local:IncognitoIconConverter x:Key="IncognitoIconConverter"/>
+
+        <system:String x:Key="Partition">MainPartition</system:String>
+        <DataTemplate x:Key="BrowserTabItemTemplate" DataType="{x:Type local:TabInfo}">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="{Binding IsIncognito, Converter={StaticResource IncognitoIconConverter}}" Width="18" Height="18"/>
+                <TextBlock Text="{Binding Header}" Margin="4,0,0,0"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <DataTemplate x:Key="BrowserTabContentTemplate" DataType="{x:Type local:TabInfo}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Toolbar -->
+                    <RowDefinition Height="*"/>
+                    <!-- WebView2 -->
+                </Grid.RowDefinitions>
+                <!-- Toolbar -->
+                <Grid Grid.Row="0" Background="#FFFFFF" Margin="0,0,1,0" VerticalAlignment="Top" Height="34" Width="auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Các nút bên trái -->
+                    <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                        <Button Click="BackBtn_Click" Height="25" Width="28" Margin="5,0,10,0" Background="Transparent" BorderBrush="Transparent">
+                            <Image Source="/Icon/back-button.png" />
+                        </Button>
+                        <Button Click="NextBtn_Click" Height="25" Width="28" Margin="0,0,10,0" Background="Transparent" BorderBrush="Transparent">
+                            <Image Source="/Icon/fast-forward.png" />
+                        </Button>
+                        <Button Click="RefreshBtn_Click" Height="23" Width="25" Margin="0,0,10,0" Background="Transparent" BorderBrush="Transparent">
+                            <Image Source="{Binding TabData.ReloadIconPath}" />
+                        </Button>
+                        <Button Click="HomeBtn_Click" Height="25" Width="28" Margin="0,0,10,0" Background="Transparent" BorderBrush="Transparent">
+                            <Image Source="/Icon/home.png"/>
+                        </Button>
+                    </StackPanel>
+                    <!-- UrlBox ở giữa: Binding vào TabData.Url -->
+
+                    <controls:AutoCompleteBox
+                            Grid.Column="1"
+                            x:Name="UrlAutoComplete"
+                            MinWidth="685"
+                            Width="auto"
+                            Height="23"
+                            Margin="0,0,10,0"
+                            MinimumPrefixLength="0"
+                            FilterMode="Contains"
+                            ItemsSource="{Binding DataContext.Suggestions, RelativeSource={RelativeSource AncestorType=Window}}"
+                            Text="{Binding TabData.Url, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
+                            KeyDown="UrlAutoComplete_KeyDown"
+                            SelectionChanged="UrlAutoComplete_SelectionChanged"
+                            TextChanged="UrlAutoComplete_TextChanged"
+                            TextBoxStyle="{StaticResource NoHighlightTextBox}">
+                        <controls:AutoCompleteBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}" />
+                            </DataTemplate>
+                        </controls:AutoCompleteBox.ItemTemplate>
+                    </controls:AutoCompleteBox>
+
+                    <!-- Các nút bên phải -->
+                    <StackPanel Orientation="Horizontal" Grid.Column="2" VerticalAlignment="Center">
+                        <Button Click="BookmarkBtn_Click" Height="25" Width="28" Margin="0,0,10,0" Background="Transparent" BorderBrush="Transparent">
+                            <Image Source="/Icon/bookmark.png"/>
+                        </Button>
+                        <Button Click="DownloadBtn_Click" Height="24" Width="26" Margin="0,0,10,0" Background="Transparent" BorderBrush="Transparent">
+                            <Image Source="/Icon/download.png"/>
+                        </Button>
+                        <Button Click="MoreBtn_Click" Height="25" Width="28" Margin="0,0,5,0" Background="Transparent" BorderBrush="Transparent">
+                            <Button.ContextMenu>
+                                <ContextMenu Width="250" Height="135" Style="{StaticResource ContextMenuWithBorder}">
+                                    <MenuItem  Header="History" InputGestureText="Ctrl + H"  x:Name="HistoryBtn" Command="{x:Static local:WebWindow.ShowHistoryCommand}"/>
+                                    <MenuItem Header="SavedBookmark" InputGestureText="Ctrl + B"  Command="{x:Static local:WebWindow.ShowBookmarkCommand}"/>
+                                    <MenuItem Header="Downloaded" InputGestureText="Ctrl + D" Command="{x:Static local:WebWindow.ShowDownloadHistoryCommand}"/>
+                                    <MenuItem Header="Incognito tab" InputGestureText="Ctrl + Shift + N" Command="{x:Static local:WebWindow.NewIncognitoTabCommand}"/>
+                                    <MenuItem Header="Summarize AI" InputGestureText="Ctrl + S" Command="{x:Static local:WebWindow.SummarizeAICommand}"/>
+                                    <Separator Margin="0,0,25,0"/>
+                                    <MenuItem Header="Settings" Click="Settings_Click"/>
+                                </ContextMenu>
+                            </Button.ContextMenu>
+                            <Image Source="/Icon/more.png"/>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+                <!-- WebView của tab -->
+                <ContentPresenter Grid.Row="1"
+                  Content="{Binding Content}"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch" Margin="0,0,0,10"/>
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Border>
+        <Grid>
+            <!-- Bảng thông báo chọn chế độ trình duyệt -->
+
+            <DockPanel>
+                <dockablz:Layout Partition="{StaticResource Partition}" Margin="0,0,0,150" Height="870">
+                    <dragablz:TabablzControl x:Name="BrowserTabs"
+                                             Background="#F1F3F9"
+                                             BorderBrush="#F1F3F9"
+                                             ShowDefaultAddButton="True"
+                                             ShowDefaultCloseButton="True"
+                                             ItemsSource="{Binding Tabs}"
+                                             SelectedItem="{Binding SelectedTab}"
+                                             SelectedIndex="0"
+                                             HeaderMemberPath="Header"
+                                             ItemContainerStyle="{StaticResource TrapezoidDragableTabItemStyle}"
+                                             ContentTemplate="{StaticResource BrowserTabContentTemplate}"
+                                             SelectionChanged="BrowserTabs_SelectionChanged"
+                                             ClosingItemCallback="BrowserTabs_ClosingItem">
+                        <dragablz:TabablzControl.InterTabController>
+                            <dragablz:InterTabController Partition="{StaticResource Partition}" />
+                        </dragablz:TabablzControl.InterTabController>
+                    </dragablz:TabablzControl>
+                </dockablz:Layout>
+                <!-- Nút minimize/maximize/close ở góc trên bên phải -->
+
+                <Popup x:Name="HistoryPopupControl"
+                       Placement="Bottom"
+                       PlacementTarget="{Binding ElementName=HistoryBtn}"
+                       AllowsTransparency="True"
+                       StaysOpen="True"
+                       MinWidth="260"
+                       MaxHeight="340">
+                    <Border Background="White" CornerRadius="8" BorderBrush="#E0E0E0" BorderThickness="1" Padding="0">
+                        <StackPanel>
+                            <TextBlock Text="Lịch sử" FontWeight="Bold" FontSize="15" Margin="14,10,0,8"/>
+                            <ItemsControl ItemsSource="{Binding RecentHistory}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Background="Transparent" Padding="6,4" MouseLeftButtonUp="HistoryItem_Click">
+                                            <StackPanel Orientation="Horizontal">
+                                                <Image Source="{Binding Icon}" Width="18" Height="18"/>
+                                                <TextBlock Text="{Binding Title}" Margin="8,0,0,0" FontSize="13"/>
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+                </Popup>
+            </DockPanel>
+
+            <Grid x:Name="InfoPanel" Panel.ZIndex="100" HorizontalAlignment="Center" VerticalAlignment="Center" Width="980" Height="430">
+                <TextBlock Text="Chọn chế độ trình duyệt:" FontSize="40" FontWeight="SemiBold" Foreground="#1976D2" VerticalAlignment="Top" Margin="261,20,170,0"/>
+
+                <!-- Button Duyệt Web -->
+                <Button x:Name="NormalBrowseBtn"
+                Click="NormalBrowseBtn_Click" 
+                Padding="14,6"
+                BorderThickness="0"
+                Cursor="Hand"
+                Height="200"
+                Width="200"
+                Background="Transparent"
+                Margin="-400,100,0,0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent" BorderThickness="0">
+                                <Image Source="/Icon/Webbrowser.png" Width="180" Height="180">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="#1976D2" BlurRadius="18" ShadowDepth="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="RenderTransform">
+                                                        <Setter.Value>
+                                                            <ScaleTransform ScaleX="1.08" ScaleY="1.08"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <!-- Button Ẩn danh -->
+                <Button x:Name="IncognitoBtn"
+                Click="IncognitoBtn_Click"
+                Padding="14,6"
+                BorderThickness="0"
+                Cursor="Hand"
+                Height="200"
+                Width="200"
+                Background="Transparent"
+                Margin="482,100,92,0" RenderTransformOrigin="0.5,0.5">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Background="Transparent" BorderThickness="0">
+                                <Image Source="/Icon/Incognito.png"  Width="180" Height="180">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Style.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Effect">
+                                                        <Setter.Value>
+                                                            <DropShadowEffect Color="#1976D2" BlurRadius="18" ShadowDepth="0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                    <Setter Property="RenderTransform">
+                                                        <Setter.Value>
+                                                            <ScaleTransform ScaleX="1.08" ScaleY="1.08"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Panel.ZIndex="100" HorizontalAlignment="Right" Margin="900,0,0,0">
+                <Button Width="20" Height="20" Margin="2,0" Click="Minimize_Click" BorderThickness="0" Background="Transparent">
+                    <Image Source="/Icon/minus.png"/>
+                </Button>
+                <Button Width="20" Height="20" Margin="2,0" Padding="0" Click="Maximize_Click" BorderThickness="0" Background="Transparent">
+                    <Image Source="/Icon/fullscreen.png"/>
+                </Button>
+                <Button Width="22" Height="20" Margin="2,0" Padding="0" Click="Close_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid>
+                                <Rectangle x:Name="bg" Fill="Transparent" Width="20"/>
+                                <Path Data="M2,2 L10,10 M2,10 L10,2"
+                          Stroke="Black" StrokeThickness="1" Stretch="Uniform" Margin="0,2,0,2"/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="bg" Property="Fill" Value="#F44336"/>
+                                    <Setter TargetName="bg" Property="Effect">
+                                        <Setter.Value>
+                                            <DropShadowEffect Color="Red" BlurRadius="15"  ShadowDepth="0"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter TargetName="bg" Property="Opacity" Value="0.7"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </StackPanel>
+
+            <Grid x:Name="LoadingOverlay" Visibility="Hidden" Panel.ZIndex="999" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="0">
+                <StackPanel 
+ Background="Transparent" Height="580" MinWidth="800" Width="auto">
+                    <Border CornerRadius="20">
+                        <ProgressBar Background="Transparent" BorderBrush="Transparent" Width="569" Height="15" IsIndeterminate="True" HorizontalAlignment="Center" MinWidth="500" Margin="30,1,0,0"/>
+                    </Border>
+                </StackPanel>
+                <Image Source="SummaryAI\MainCharacter.png" Width="45" HorizontalAlignment="Left" Margin="89,-4,0,554"/>
+            </Grid>
+        </Grid>
+    </Border>
+</Window>
