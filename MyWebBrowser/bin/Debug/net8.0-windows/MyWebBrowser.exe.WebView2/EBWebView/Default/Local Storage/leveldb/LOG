@@ -1,6 +1,0 @@
-2025/10/27-12:19:02.943 62dc Reusing MANIFEST C:\Desktopktop\Beta Ver\ver5\MyWebBrowser\MyWebBrowser\bin\Debug\net8.0-windows\MyWebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/MANIFEST-000001
-2025/10/27-12:19:02.950 62dc Recovering log #27
-2025/10/27-12:19:02.953 62dc Reusing old log C:\Desktopktop\Beta Ver\ver5\MyWebBrowser\MyWebBrowser\bin\Debug\net8.0-windows\MyWebBrowser.exe.WebView2\EBWebView\Default\Local Storage\leveldb/000027.log 
-2025/10/27-12:19:13.263 8968 Level-0 table #31: started
-2025/10/27-12:19:13.271 8968 Level-0 table #31: 51163 bytes OK
-2025/10/27-12:19:13.274 8968 Delete type=0 #27
