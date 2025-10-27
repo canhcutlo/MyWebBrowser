@@ -4,12 +4,12 @@ using System.ComponentModel;
 
 public class TabData : INotifyPropertyChanged
 {
-    private string _url;
     private bool _isLoading;
     public WebView2 WebView2 { get; set; }
 
     public ObservableCollection<string> History { get; set; } = new ObservableCollection<string>();
 
+    private string _url = string.Empty;
     public string Url
     {
         get => _url;
@@ -33,6 +33,21 @@ public class TabData : INotifyPropertyChanged
                 _isLoading = value;
                 OnPropertyChanged(nameof(IsLoading));
                 OnPropertyChanged(nameof(ReloadIconPath));
+            }
+        }
+    }
+
+    // NEW: flag để biết user đang edit URL (đặt bởi GotKeyboardFocus/LostKeyboardFocus)
+    private bool _isEditingUrl;
+    public bool IsEditingUrl
+    {
+        get => _isEditingUrl;
+        set
+        {
+            if (_isEditingUrl != value)
+            {
+                _isEditingUrl = value;
+                OnPropertyChanged(nameof(IsEditingUrl));
             }
         }
     }

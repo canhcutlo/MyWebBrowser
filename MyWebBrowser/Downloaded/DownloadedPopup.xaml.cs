@@ -35,12 +35,12 @@ namespace MyWebBrowser
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Không mở được file:\n" + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
+                    System.Windows.MessageBox.Show("Không mở được file:\n" + ex.Message, "Lỗi", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             else
             {
-                MessageBox.Show("File không tồn tại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
+                System.Windows.MessageBox.Show("File không tồn tại!", "Lỗi", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 

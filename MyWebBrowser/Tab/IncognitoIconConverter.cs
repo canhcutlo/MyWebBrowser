@@ -8,7 +8,7 @@ namespace MyWebBrowser
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             bool isIncognito = value is bool b && b;
-            return isIncognito ? "Incognito.png" : "Webbrowser.png";
+            return isIncognito ? "/Icon/Incognito.png" : "/Icon/Webbrowser.png";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

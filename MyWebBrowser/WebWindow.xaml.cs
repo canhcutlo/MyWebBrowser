@@ -2,6 +2,7 @@
 using Dragablz.Dockablz;
 using Microsoft.Web.WebView2.Core;
 using Microsoft.Web.WebView2.Wpf;
+using MyWebBrowser.Setting;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,9 +21,12 @@ using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using static MyWebBrowser.WebWindow;
+
 
 namespace MyWebBrowser
 {
+
     public class TabInfo : INotifyPropertyChanged
     {
         private string _header;
@@ -38,7 +42,6 @@ namespace MyWebBrowser
                 }
             }
         }
-
         public WebView2 Content { get; set; }
         public TabData TabData { get; set; }
         public bool IsIncognito { get; set; }
@@ -49,9 +52,14 @@ namespace MyWebBrowser
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+    }
+    public interface ISettingsReceiver
+    {
+        void ApplySettings(MyWebBrowser.Setting.AppSettings settings);
     }
 
-    public partial class WebWindow : Window
+    public partial class WebWindow : Window, ISettingsReceiver
     {
         private bool isSummarizingAI = false;
         private bool isChoosingSuggestion = false;
@@ -121,6 +129,15 @@ namespace MyWebBrowser
             {
                 if (e.IsSuccess)
                 {
+                    try
+                    {
+                        var appData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+                        var folder = Path.Combine(appData, "MyWebBrowserVer4");
+                        var settingsPath = Path.Combine(folder, "settings.json");
+                        var settings = SettingsManager.Load(settingsPath); // SettingsManager ở namespace MyWebBrowser.Setting
+                        webView2.ZoomFactor = settings.DefaultZoomPercent / 100.0;
+                    }
+                    catch { }
                     webView2.CoreWebView2.DownloadStarting += CoreWebView2_DownloadStarting;
                 }
             };
@@ -167,14 +184,22 @@ namespace MyWebBrowser
                         if (tab != null)
                         {
                             var url = webView2.Source?.ToString();
+
+                            // Nếu tab đang được chọn và người dùng đang sửa URL thì không ghi đè
+                            bool isSelected = BrowserTabs.SelectedItem == tab;
+                            if (!tab.TabData.IsEditingUrl)
+                            {
+                                tab.TabData.Url = url;
+                            }
+
                             if (tab.IsIncognito)
-                            { tab.Header = "Ẩn danh"; }
+                                tab.Header = "Ẩn danh";
                             else
-                            { tab.Header = GetTabHeaderFromUrl(url); }
-                            tab.TabData.Url = url;
+                                tab.Header = GetTabHeaderFromUrl(url);
+
                             tab.TabData.IsLoading = false;
 
-                            // Thêm vào lịch sử tab hiện tại
+                            // Thêm vào lịch sử (không thay đổi)
                             if (!tab.IsIncognito && !string.IsNullOrWhiteSpace(url))
                             {
                                 if (tab.TabData.History.Count == 0 || tab.TabData.History.Last() != url)
@@ -255,15 +280,51 @@ namespace MyWebBrowser
                 var webView2 = new WebView2();
                 await webView2.EnsureCoreWebView2Async(env);
 
-                webView2.NavigationCompleted += (sender2, args2) =>
+                webView2.CoreWebView2.NavigationCompleted += (sender2, args2) =>
                 {
                     var tab = FindTabOfWebView2(webView2);
                     if (tab != null)
                     {
                         var url = webView2.Source?.ToString();
-                        tab.Header = "Ẩn danh";
-                        tab.TabData.Url = url;
+
+                        // Nếu tab đang được chọn và người dùng đang sửa URL thì không ghi đè
+                        bool isSelected = BrowserTabs.SelectedItem == tab;
+                        if (!tab.TabData.IsEditingUrl)
+                        {
+                            tab.TabData.Url = url;
+                        }
+
+                        if (tab.IsIncognito)
+                            tab.Header = "Ẩn danh";
+                        else
+                            tab.Header = GetTabHeaderFromUrl(url);
+
                         tab.TabData.IsLoading = false;
+
+                        // Thêm vào lịch sử (không thay đổi)
+                        if (!tab.IsIncognito && !string.IsNullOrWhiteSpace(url))
+                        {
+                            if (tab.TabData.History.Count == 0 || tab.TabData.History.Last() != url)
+                                tab.TabData.History.Add(url);
+
+                            if (allHistoryList.Count == 0 || allHistoryList.Last().Url != url)
+                            {
+                                allHistoryList.Add(new HistoryItem
+                                {
+                                    Title = GetTabHeaderFromUrl(url),
+                                    Description = url,
+                                    IconUrl = GetFaviconUrl(url),
+                                    Url = url
+                                });
+                            }
+                            historyManager.AddHistory(new HistoryItem
+                            {
+                                Title = GetTabHeaderFromUrl(url),
+                                Description = url,
+                                IconUrl = GetFaviconUrl(url),
+                                Url = url
+                            });
+                        }
                     }
                 };
                 webView2.CoreWebView2.NewWindowRequested += CoreWebView2_NewWindowRequested;
@@ -289,7 +350,7 @@ namespace MyWebBrowser
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khởi tạo Incognito: " + ex.Message);
+                System.Windows.MessageBox.Show("Lỗi khởi tạo Incognito: " + ex.Message);
                 return null;
             }
         }
@@ -362,6 +423,14 @@ namespace MyWebBrowser
             if (tabInfo != null && tabInfo.TabData != null)
             {
                 var webView = tabInfo.TabData.WebView2;
+                // Nếu user đang nhập trong ô URL (is editing) thì không ghi đè Url
+                if (tabInfo.TabData.IsEditingUrl)
+                {
+                    // chỉ cập nhật trạng thái loading
+                    tabInfo.TabData.IsLoading = webView?.CoreWebView2?.DocumentTitle == null;
+                    return;
+                }
+
                 tabInfo.TabData.Url = webView?.Source?.ToString() ?? "";
                 tabInfo.TabData.IsLoading = webView?.CoreWebView2?.DocumentTitle == null;
             }
@@ -430,7 +499,7 @@ namespace MyWebBrowser
             }
         }
 
-        private void UrlAutoComplete_KeyDown(object sender, KeyEventArgs e)
+        private void UrlAutoComplete_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
@@ -510,6 +579,21 @@ namespace MyWebBrowser
                 Suggestions.Add($"Tìm kiếm với Google: {input}");
         }
 
+        private void UrlAutoComplete_GotKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (sender is FrameworkElement fe && fe.DataContext is TabInfo tab)
+            {
+                tab.TabData.IsEditingUrl = true;
+            }
+        }
+
+        private void UrlAutoComplete_LostKeyboardFocus(object sender, KeyboardFocusChangedEventArgs e)
+        {
+            if (sender is FrameworkElement fe && fe.DataContext is TabInfo tab)
+            {
+                tab.TabData.IsEditingUrl = false;
+            }
+        }
         private void BookmarkBtn_Click(object sender, RoutedEventArgs e)
         {
             var tabInfo = GetCurrentTabInfo();
@@ -518,7 +602,7 @@ namespace MyWebBrowser
 
             if (tabInfo.IsIncognito)
             {
-                MessageBox.Show("Tab ẩn danh không cho phép lưu bookmark.", "Incognito Mode", MessageBoxButton.OK, MessageBoxImage.Information);
+                System.Windows.MessageBox.Show("Tab ẩn danh không cho phép lưu bookmark.", "Incognito Mode", MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
 
@@ -666,12 +750,12 @@ namespace MyWebBrowser
                 if (dialog.ShowDialog() == true)
                 {
                     System.IO.File.WriteAllText(dialog.FileName, html);
-                    MessageBox.Show("Đã lưu trang web!", "Tải về trang web", MessageBoxButton.OK, MessageBoxImage.Information);
+                    System.Windows.MessageBox.Show("Đã lưu trang web!", "Tải về trang web", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             else
             {
-                MessageBox.Show("No active web view found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                System.Windows.MessageBox.Show("No active web view found.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -720,12 +804,42 @@ namespace MyWebBrowser
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Settings clicked!");
+            var win = new SettingsWindow();
+            win.Owner = this;
+            var result = win.ShowDialog();
+        }
+        // trong class WebWindow (MyWebBrowser.WebWindow)
+        public void ApplySettings(MyWebBrowser.Setting.AppSettings settings)
+        {
+            if (settings == null) return;
+            try
+            {
+                if (string.Equals(settings.Theme, "Dark", StringComparison.OrdinalIgnoreCase))
+                    this.Background = System.Windows.Media.Brushes.Black;
+                else
+                    this.Background = System.Windows.Media.Brushes.WhiteSmoke;
+            }
+            catch { }
+
+            // Zoom: apply cho các webview đã khởi tạo
+            foreach (var tab in Tabs)
+            {
+                var wv = tab.TabData?.WebView2;
+                if (wv?.CoreWebView2 != null)
+                {
+                    try
+                    {
+                        wv.ZoomFactor = settings.DefaultZoomPercent / 100.0;
+                    }
+                    catch { }
+                }
+            }
+
         }
 
         private void MoreBtn_Click(object sender, RoutedEventArgs e)
         {
-            var btn = sender as Button;
+            var btn = sender as System.Windows.Controls.Button;
             if (btn?.ContextMenu != null)
             {
                 btn.ContextMenu.PlacementTarget = btn;
@@ -798,7 +912,7 @@ namespace MyWebBrowser
             var webView = GetCurrentWebView();
             if (webView == null || webView.Source == null)
             {
-                MessageBox.Show("Không có trang web nào được mở.");
+                System.Windows.MessageBox.Show("Không có trang web nào được mở.");
                 return;
             }
 
@@ -819,7 +933,7 @@ namespace MyWebBrowser
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Có lỗi khi tóm tắt AI: " + ex.Message);
+                System.Windows.MessageBox.Show("Có lỗi khi tóm tắt AI: " + ex.Message);
             }
             finally
             {
@@ -832,7 +946,7 @@ namespace MyWebBrowser
         private async Task<string> SummarizeWithAIAsync(string url)
         {
             // TODO: Không để API key cứng trong mã nguồn. Đưa vào cấu hình/secret store.
-            string apiKey = "REPLACE_WITH_YOUR_API_KEY";
+            string apiKey = "AIzaSyAD9S6dWcbyXDhI2oAl-QUYxrKl2d-ArpE";
             string endpoint = $"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={apiKey}";
 
             var payload = new
@@ -871,5 +985,6 @@ namespace MyWebBrowser
                 return $"Error:\n{result}";
             }
         }
+
     }
 }

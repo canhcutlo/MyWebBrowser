@@ -62,8 +62,8 @@ namespace MyWebBrowser
         }
         private void DeleteAllGlobalHistory_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Bạn chắc chắn muốn xóa toàn bộ lịch sử chung?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (MessageBox.Show("", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            System.Windows. MessageBox.Show("Bạn chắc chắn muốn xóa toàn bộ lịch sử chung?", "Xác nhận", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (System.Windows.MessageBox.Show("", "", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
             {
                 GlobalHistory.Clear();
                 if (MyWebBrowser.WebWindow.historyManager != null)
